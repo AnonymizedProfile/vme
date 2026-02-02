@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Volumetric Morphology Encodings For Universal Control">
+  <meta name="description" content="VME: Novel volumetric morphology tokens learned from 3D robot scans achieve up to 60% improvement on challenging universal control tasks.">
+  <meta name="keywords" content="universal control, robot learning, morphology encoding, reinforcement learning, multi-robot control, 3D representation learning">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="VME Project">
+  <meta property="og:title" content="Volumetric Morphology Encodings For Universal Control">
+  <meta property="og:description" content="VME: Novel volumetric morphology tokens learned from 3D robot scans achieve up to 60% improvement on challenging universal control tasks.">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="FIRST_AUTHOR_NAME">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="KEYWORD1">
+  <meta property="article:tag" content="KEYWORD2">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
+  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
+  <meta name="twitter:title" content="Volumetric Morphology Encodings For Universal Control">
+  <meta name="twitter:description" content="VME: Novel volumetric morphology tokens learned from 3D robot scans achieve up to 60% improvement on challenging universal control tasks.">
+  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta name="twitter:image:alt" content="Volumetric Morphology Encodings For Universal Control">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="Volumetric Morphology Encodings For Universal Control">
+  <meta name="citation_author" content="Anonymous">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="ICML 2026">
+  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <title>VME: Volumetric Morphology Encodings For Universal Control</title>
+  
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Volumetric Morphology Encodings For Universal Control",
+    "description": "Novel volumetric morphology tokens for universal robot control",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "FIRST_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "SECOND_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      }
+    ],
+    "datePublished": "2024-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CONFERENCE_OR_JOURNAL_NAME"
+    },
+    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
+    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "keywords": ["universal control", "robot learning", "morphology encoding", "reinforcement learning", "3D representation"],
+"abstract": "Universal control policies promise a scalable alternative to the costly training of robot-specific controllers. We propose VME, novel morphology tokens learned from 3D robot scans achieving up to 60% improvement on UNIMAL benchmark tasks.",
+    "citation": "BIBTEX_CITATION_HERE",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "RESEARCH_AREA_1"
+      },
+      {
+        "@type": "Thing", 
+        "name": "RESEARCH_AREA_2"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INSTITUTION_OR_LAB_NAME",
+    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "sameAs": [
+      "https://twitter.com/YOUR_TWITTER_HANDLE",
+      "https://github.com/YOUR_GITHUB_USERNAME"
+    ]
+  }
+  </script>
+  
+
+</head>
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- More Works Dropdown (temporarily disabled) -->
+  <div class="more-works-container" hidden>
+    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
+      <i class="fas fa-flask"></i>
+      More Works
+      <i class="fas fa-chevron-down dropdown-arrow"></i>
+    </button>
+    <div class="more-works-dropdown" id="moreWorksDropdown">
+      <div class="dropdown-header">
+        <h4>More Works from Our Lab</h4>
+        <button class="close-btn" onclick="toggleMoreWorks()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="works-list">
+        <!-- TODO: Replace with your lab's related works -->
+        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
+          <div class="work-info">
+            <!-- TODO: Replace with actual paper title -->
+            <h5>Paper Title 1</h5>
+            <!-- TODO: Replace with brief description -->
+            <p>Brief description of the work and its main contribution.</p>
+            <!-- TODO: Replace with venue and year -->
+            <span class="work-venue">Conference/Journal 2024</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <!-- TODO: Add more related works or remove extra items -->
+        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Paper Title 2</h5>
+            <p>Brief description of the work and its main contribution.</p>
+            <span class="work-venue">Conference/Journal 2023</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Paper Title 3</h5>
+            <p>Brief description of the work and its main contribution.</p>
+            <span class="work-venue">Conference/Journal 2023</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+  <section class="hero hero-banner">
+    <video id="hero-video" class="hero-video" autoplay muted playsinline preload="metadata">
+      <source src="static/videos/MVT/VME%20(ModM).mp4#t=7" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Volumetric Morphology Encodings For Universal Control</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- TODO: Replace with your paper authors and their personal links -->
+              <span class="author-block">
+                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Anonymous Authors</a><sup>*</sup>,</span>
+                <!--<span class="author-block">
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
+                  <span class="author-block">
+                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
+                  </span>-->
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">Anonymous Institution<br>ICML 2026</span>
+                    <!-- TODO: Remove this line if no equal contribution -->
+                    <!--<span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+                  --> </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- TODO: Update with your arXiv paper ID -->
+                          <!--
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>-->
+
+                    <!--
+                    <span class="link-block">
+                      <a href="static/pdfs/paper.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>PDF</span>
+                    </a>
+                  </span>
+                    -->
+
+                  <span class="link-block">
+                    <a href="https://anonymous.4open.science/r/MJCF2O3D-D00E/README.md" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Data Collection</span>
+                  </a>
+                </span>
+
+                  <span class="link-block">
+                    <a href="https://anonymous.4open.science/r/voxvae-A353/README.md" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>VME Training</span>
+                  </a>
+                </span>
+
+                  <span class="link-block">
+                    <a href="https://anonymous.4open.science/r/VME-Anonymized/README.md" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>VME Universal Control</span>
+                  </a>
+                </span>
+
+                <!-- TODO: Update with your arXiv paper ID -->
+                 <!--
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser and Visualizations -->
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body has-text-centered">
+      <figure class="image gif-container">
+        <div class="gif-scroll-wrapper gif-large">
+          <img src="static/images/go1-parsed-combined.gif" alt="GO1 robot voxel visualization" class="gif-image">
+        </div>
+      </figure>
+      <figure class="image" style="margin-top: 2rem;">
+        <img src="static/images/teaser.png" alt="Learning volumetric morphology encodings from a dataset of 3D robot scans for better conditioning in universal control" style="max-width: 100%; height: auto;">
+      </figure>
+      <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
+        Using multi-view depth fusion, we collect 3D morphological data from a diverse set of robots. VME learns 3D morphology tokens, enabling superior downstream universal control performance.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser and visualizations -->
+
+<!-- Qualitative Results -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Qualitative Results</h2>
+        <div class="qualitative-content">
+          <!-- Tab buttons -->
+          <div class="tabs is-centered">
+            <ul>
+              <li class="is-active"><a onclick="switchTab(this, 'motivating-tab')" style="cursor: pointer;">Motivating Experiment</a></li>
+              <li><a onclick="switchTab(this, 'mvt-tab')" style="cursor: pointer;">MVT</a></li>
+              <li><a onclick="switchTab(this, 'ob-tab')" style="cursor: pointer;">OB</a></li>
+            </ul>
+          </div>
+
+          <!-- Tab content -->
+          <!-- Motivating Experiment Tab -->
+          <div id="motivating-tab" class="tab-content" style="display: block;">
+            <div class="content has-text-centered">
+              <div class="columns is-multiline is-centered">
+                <div class="column is-half">
+                  <h4 style="margin-bottom: 1rem;">D (ModM)</h4>
+                  <video controls muted loop style="width: 100%; max-width: 400px;" preload="metadata">
+                    <source src="static/videos/motivate/D%20(ModM).mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div class="column is-half">
+                  <h4 style="margin-bottom: 1rem;">D+BP (ModM)</h4>
+                  <video controls muted loop style="width: 100%; max-width: 400px;" preload="metadata">
+                    <source src="static/videos/motivate/D%2BBP%20(ModM).mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+              <p style="margin-top: 1.5rem;">While both context vectors allow the ModuMorph policy to traverse the bumpy area of the terrain, the "D" (dynamics-only) context seems limiting: its policy struggles to enter the bumpy area of the terrain, and its episode terminates as it fails to gracefully exit the bumpy area. In contrast, the policy that has access to D+BP handles both transitions correctly.</p>
+            </div>
+          </div>
+
+          <!-- MVT Tab -->
+          <div id="mvt-tab" class="tab-content" style="display: none;">
+            <div class="content has-text-centered">
+              <div class="columns is-multiline is-centered">
+                <div class="column is-half">
+                  <h4 style="margin-bottom: 1rem;">D+BP (ModM)</h4>
+                  <video controls muted loop style="width: 100%; max-width: 400px;" preload="metadata">
+                    <source src="static/videos/MVT/D%2BBP%20(ModM).mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div class="column is-half">
+                  <h4 style="margin-bottom: 1rem;">VME (ModM)</h4>
+                  <video controls muted loop style="width: 100%; max-width: 400px;" preload="metadata">
+                    <source src="static/videos/MVT/VME%20(ModM).mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+              <p style="margin-top: 1.5rem;">Though both agents fail to solve the task in these videos, it is our opinion that the VME policy seems better able to reason about its body and the manipulable object, allowing it to forcefully kick the cube.</p>
+            </div>
+          </div>
+
+          <!-- OB Tab -->
+          <div id="ob-tab" class="tab-content" style="display: none;">
+            <div class="content has-text-centered">
+              <p>OB videos coming soon...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Qualitative Results -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: Replace with your paper abstract -->
+          <p>
+          Universal control policies promise a scalable alternative to the costly training of robot-specific controllers. Recent works have demonstrated that proper conditioning on robot morphological context is key to generalizing across robot embodiments and to obtaining good performance on this challenging multi-task control problem. To provide the morphological context of the robots’ 3D configuration to the control policy, existing methods have posed the strong assumption that robots are composed of simplified geometric primitives and have built the context tokens using these primitives’ one-dimensional parameter vectors.
+In this paper, we relax this assumption by proposing volumetric morphology encodings (VME). These novel morphology tokens are learned during a pretraining phase from a 3D robot morphology dataset that we collect using tools from robotics and computer vision such as multi-view depth fusion. We train VME-conditioned universal controllers on the  challenging UNIMAL benchmark, and we find that our approach  achieves superior generalization, with substantial improvement over the state-of-the-art on difficult tasks (up to 60% on the hardest task that mixes manipulation and locomotion). Furthermore, our approach demonstrates superior zero-shot transfer to novel embodiments.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Key Contributions</h2>
+        <div class="content has-text-justified">
+          <ul>
+            <li><strong>Morphology Context Analysis:</strong> We empirically demonstrate that 3D body plan context is substantially more important than dynamics context for universal control performance.</li>
+            <li><strong>Volumetric Morphology Encodings (VME):</strong> We propose a novel representation for robot body plans that leverages multi-view depth fusion to capture 3D shape and connectivity, learned offline using a volumetric CNN autoencoder.</li>
+            <li><strong>State-of-the-Art Results:</strong> VME dramatically improves universal control performance by up to 60% on the hardest UNIMAL benchmark tasks and enhances zero-shot transfer to novel robot embodiments.</li>
+          </ul>
+        </div>
+
+        <h2 class="title is-3" style="margin-top: 2rem;">Method Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            Prior work on universal control has provided morphological context by assuming robots are composed of primitive shapes (spheres, capsules, etc.) and feeding their parameter vectors to the policy. This approach is limiting because: (1) it precludes working with real robots that are rarely composed of primitives, and (2) it doesn't leverage 3D equivariances.
+          </p>
+          <p>
+            We propose to learn morphology tokens from actual 3D data. Using multi-view depth fusion—a technique commonly used in robotics for room scanning—we turn the process inward to scan robot body plans. We then train a volumetric CNN autoencoder to compress each robot limb's 3D scan into a low dimensional latent space (L=16) that serves as the morphology context token.
+          </p>
+        </div>
+
+        <h2 class="title is-3" style="margin-top: 2rem;">Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            On the standardized UNIMAL tasks, VME-conditioned policies achieve improvements of up to 60%, with particularly high gains on harder tasks. We also observe improved zero-shot transfer to previously unseen robot morphologies.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div style="display: none;">
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+       <div class="item">
+        <!-- TODO: Replace with your research result images -->
+        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
+        <!-- TODO: Replace with description of this result -->
+        <h2 class="subtitle has-text-centered">
+          First image description.
+        </h2>
+      </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
+        <h2 class="subtitle has-text-centered">
+          Second image description.
+        </h2>
+      </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
+        <h2 class="subtitle has-text-centered">
+         Third image description.
+       </h2>
+     </div>
+     <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
+      <h2 class="subtitle has-text-centered">
+        Fourth image description.
+      </h2>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+<!-- End image carousel -->
+</div>
+
+
+<div style="display: none;">
+<!-- Youtube video -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title is-3">Video Presentation</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          <div class="publication-video">
+            <!-- TODO: Replace with your YouTube video ID -->
+            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+</div>
+
+
+<div style="display: none;">
+<!-- Video carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Another Carousel</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <!-- TODO: Add poster image for better preview -->
+          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
+            <!-- Your video file here -->
+            <source src="static/videos/carousel1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <!-- TODO: Add poster image for better preview -->
+          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
+            <!-- Your video file here -->
+            <source src="static/videos/carousel2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <!-- TODO: Add poster image for better preview -->
+          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
+            <!-- Your video file here -->
+            <source src="static/videos/carousel3.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End video carousel -->
+ </div>
+
+<!-- Highlight videos -->
+
+
+
+
+
+
+<div style="display: none;">
+<!-- Paper poster -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Poster</h2>
+
+      <!-- TODO: Replace with your poster PDF -->
+      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
+          </iframe>
+        
+      </div>
+    </div>
+  </section>
+<!--End paper poster -->
+</div>
+
+
+<!--BibTex citation 
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
+  title={Your Paper Title Here},
+  author={First Author and Second Author and Third Author},
+  journal={Conference/Journal Name},
+  year={2024},
+  url={https://your-domain.com/your-project-page}
+}</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
