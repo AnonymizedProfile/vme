@@ -4,7 +4,7 @@
 
 A clean, responsive template for academic project pages.
 
-
+ 
 Example project pages built using this template are:
 - https://horwitz.ai/probex
 - https://vision.huji.ac.il/probegen
